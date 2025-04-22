@@ -157,6 +157,18 @@ function getDynamicHostingData() {
         'otherUsage' => $otherUsage
     ];
 }
+
+/* kids: {"text": 150, "image": 2000, "seo": 130300} → 18.53GB.
+gaming: {"text": 100, "image": 1500, "seo": 106400} → 14.64GB.
+billiard: {"text": 80, "image": 1000, "seo": 115300} → 14.33GB.
+Tổng bandwidth: 47.50GB.
+otherUsage: 35GB (hệ thống: 10GB, userTraffic: 3GB, khác: 22GB).
+usedSpace: 47.50 + 35 = 82.50GB.
+totalSpace: 100GB.
+usagePercent: 82.50%
+*/
+
+
 function handleSlideAndHosting($n, $c, $s, $r, $p, $u, $w) {
     // Logic slider
     if ($n !== ($c ?: 0) && $s && method_exists($r, 'emit')) {
