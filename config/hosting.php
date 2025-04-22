@@ -81,32 +81,61 @@ class Slider {
     }
 }
 
-// Hàm trả về số liệu cố định cho các subdomain
+// Hàm trả về số liệu cho các subdomainư
 function getSubdomainStats($subdomain) {
-    $stats = [
-        'kids' => [
-            'text' => 150, // 1.5GB / 0.01GB per post
-            'image' => 2000, // 4GB / 0.002GB per image
-            'keywords' => 130300, // 13.03GB / 0.0001GB per keyword
-            'bandwidth' => 18.53 // Tổng 18.53GB
-        ],
-        'gaming' => [
-            'text' => 100, // 1GB / 0.01GB per post
-            'image' => 1500, // 3GB / 0.002GB per image
-            'seo' => 106400, // 10.64GB / 0.0001GB per keyword
-            'bandwidth' => 14.64 // Tổng 14.64GB
-        ],
-        'billiard' => [
-            'text' => 80, // 0.8GB / 0.01GB per post
-            'image' => 1000, // 2GB / 0.002GB per image
-            'seo' => 115300, // 11.53GB / 0.0001GB per keyword
-            'bandwidth' => 14.33 // Tổng 14.33GB
-        ]
-    ];
+    try {
+        $url = "http://miatown.vn/{$subdomain}/assets/caches?";
+        $options = [
+            'http' => [
+                'header' => "Accept: application/json",
+                'method' => 'GET'
+            ]
+        ];
+        $context = stream_context_create($options);
+        $response = @file_get_contents($url, false, $context);
 
-    return $stats[$subdomain] ?? $stats['kids']; 
+        if ($response === false) {
+            throw new Exception("HTTP error! Unable to fetch data");
+        }
 
-// Hàm lấy dữ liệu hosting
+        $data = json_decode($response, true);
+
+        if (!$data || !isset($data['text']) || !isset($data['image']) || !isset($data['seo'])) {
+            throw new Exception("Invalid API response: Missing text, image, or seo");
+        }
+
+        $bandwidth = round(
+            $data['text'] * 0.01 +
+            $data['image'] * 0.002 +
+            $data['seo'] * 0.0001,
+            2
+        );
+
+        return { 'kids' => [
+                'text' => 150, // 1.5GB
+                'image' => 2000, // 4GB
+                'seo' => 130300, // 13.03GB
+                'bandwidth' => 18.53
+            ],
+            'gaming' => [
+                'text' => 100, // 1GB
+                'image' => 1500, // 3GB
+                'seo' => 106400, // 10.64GB
+                'bandwidth' => 14.64
+            ],
+            'billiard' => [
+                'text' => 80, // 0.8GB
+                'image' => 1000, // 2GB
+                'seo' => 115300, // 11.53GB
+                'bandwidth' => 14.33
+            ]; }
+        ];
+    } catch (Exception $e) {
+        echo "Failed to fetch stats for $subdomain: " . $e->getMessage() . "\n"
+            
+        return $fallbackData[$subdomain] ?? $fallbackData['kids'];
+    }
+}
 function getDynamicHostingData() {
     $totalSpace = 100; // diskSpace 100GB
     $subdomains = [
