@@ -1,0 +1,12 @@
+@extends('master')
+@section('contentmaster')
+    @include('layout.seo')
+    @include('layout.menu')
+    @include('layout.mmenu')
+    @includeWhen(!empty($slider), 'layout.slider')
+    @includeWhen(\NINACORE\Core\Support\Str::isNotEmpty(BreadCrumbs::get()),'layout.breadcrumbs')
+    @yield('content')
+    @include('layout.footer')
+    @include('layout.extensions')
+    @include('layout.phone')
+@endsection

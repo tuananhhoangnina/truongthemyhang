@@ -1,0 +1,33 @@
+* Admin
++ Mật khẩu mặc định 123456
++ Thêm lưu tại trang
++ thêm quay lại khi login
++ Thêm tự động scroll tới menu khi chọn trong admin 
++ Thêm cache cho SQL (Quan trọng)
++ Select cac trường thành nhiều ngôn ngữ
++ Chuyển ảnh sang .webp
++ Tạo component img (tự động co dãn theo màn hình) 
++ Tối ưu hóa css, js (loại bỏ các thư viện không dùng, chuyển slick,owl sang swipper
++ Thêm js tự động đặt width, height, alt cho thẻ a, img
++ Sửa lại giao diện trang tin tức, sản phẩm.
++ Thêm secretkey để mã hoá mật khẩu tài khoản trong config app.php
+* Lưu ý
++ Tất cả các function sau này mn phát triển viết vào file Nina.php trong Helpers (hạn chế viết vào Func, do file này sau này sẽ update nhiều lần) Cách dùng tương tự như Func.php
++ Tất cả các hình ảnh fix cứng trong các bạn chủ động chuyển sang webp
+Thư viện: https://bigconvert.11zon.com/vi/jpg-to-webp ,
+https://pixelied.com/convert/png-converter/png-to-webp (áp dụng chuyển những ảnh gốc .png (không nền))
++ Lưu cache SQL những truy vấn ít thay đổi (có viết mãu trong Homecontroller +  allcontroller)
++ Sử dụng Swipper viết các hiệu ứng (có đầy đủ các chức năng của owl và slick) (Tránh CLS trên pagespeed)
++ Sử dụng svg trong font fontawesome640 thay thẻ  i (nếu được), Xóa bỏ font fontawesome640 nếu không dùng
++ Bỏ wow , aos khi không cần thiết. (ảnh hưởng đến CLS)
++ Bỏ mmenu trên mobile sài thư viện Bootstrap + css (dễ dàng điều chỉnh theo ý khách hàng sau này)
++ Dùng @include thay vì @component (chỉ sử dụng trường hợp không cần tính năng như slot hoặc logic phức tạp.)
+	Ví dụ: @include('component.itemProduct', ['product' => $v])	
+
+* Quan trọng
+Hiện tại source đã tích hợp Clockwork (tương tự debugbar của laravel do Khang hỗ trợ cài đặt , mn cài đặt thêm Extensions để sử dụng)
+Link: extion https://chromewebstore.google.com/detail/clockwork/dmggabnehkmmfmdffgajcflpdjlnoemp
+
+
+
+

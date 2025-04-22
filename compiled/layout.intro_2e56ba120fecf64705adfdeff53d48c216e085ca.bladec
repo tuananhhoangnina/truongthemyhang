@@ -1,0 +1,67 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+<div class="intro-deco intro-deco1">
+ <img src="assets/images/intro-top-left.png" alt="intro-top-left.png">
+</div>
+<div class="intro-deco intro-deco2">
+ <img src="assets/images/intro-top-right.png" alt="intro-top-right.png">
+</div>
+<div class="intro-deco intro-deco3">
+ <img src="assets/images/intro-bottom-left.png" alt="intro-bottom-left.png">
+</div>
+<div class="intro-deco intro-deco4">
+ <img src="assets/images/intro-bottom-right.png" alt="intro-bottom-right.png">
+</div>
+ <div class="intro-wrapper">
+ <div class="wrap-content">
+ <a class="intro-logo" href="">
+ <?php  $this->startComponent('component.image', [
+ 'class' => 'lazy',
+ 'w' => 144,
+ 'h' => 144,
+ 'destination' => 'photo',
+ 'image' => $logoPhoto['photo'] ?? '',
+ 'alt' => $logoPhoto['name' . $lang] ?? '',
+ ]); ?>
+ <?php echo $this->renderComponent(); ?>
+ </a>
+ <div class="intro-grid">
+ <?php $__currentLoopData = $intro; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $v): $loop = $this->incrementLoopIndices();  ?>
+ <div>
+ <div class="intro-item">
+ <div class="intro-pic">
+ <a href="<?php echo \html_entity_decode($v["link"]??'', ENT_QUOTES, 'UTF-8'); ?>" class="d-block">
+ <span class="hover_sang3 scale-img">
+ <picture>
+ <source media="(max-width: 640px)" srcset="<?php echo \html_entity_decode(assets_photo('photo','490x185x1',$v['photo'],'thumbs')??'', ENT_QUOTES, 'UTF-8'); ?>">
+ <?php  $this->startComponent('component.image', [
+ 'class' => 'w-100 lazy',
+ 'w' => 330,
+ 'h' => 430,
+ 'z' => 1,
+ 'destination' => 'photo',
+ 'image' => $v['photo'] ?? '',
+ 'alt' => $v['name' . $lang] ?? '',
+ ]); ?>
+ <?php echo $this->renderComponent(); ?>
+ </picture>
+ </span>
+ </a>
+ </div>
+ <div class="intro-info">
+ <h3 class="intro-name">
+ <a href="<?php echo \html_entity_decode($v["link"]??'', ENT_QUOTES, 'UTF-8'); ?>"> <?php echo \html_entity_decode($v["name$lang"]??'', ENT_QUOTES, 'UTF-8'); ?> </a>
+ </h3>
+ <a href="<?php echo \html_entity_decode($v["link"]??'', ENT_QUOTES, 'UTF-8'); ?>" class="intro-contact d-none">
+ <span>Liên hệ Ngay</span>
+ </a>
+ </div>
+ </div>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+ </div>
+ </div>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('intro'); } ?>

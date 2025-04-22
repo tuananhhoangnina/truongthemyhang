@@ -1,0 +1,107 @@
+<div class="offcanvas offcanvas-start" id="menu-mobile">
+ <div class="offcanvas-body">
+ <span class="btn-close btn-close-menu" data-bs-dismiss="offcanvas"></span>
+ <nav class="menu-mobile">
+ <div class="head-menu">
+ <a class="logo-header" href="">
+ <img src="<?php echo \html_entity_decode(assets_photo('photo', '', $logoPhoto['photo'])??'', ENT_QUOTES, 'UTF-8'); ?>"
+ alt="<?php echo \html_entity_decode($setting['name' . $lang]??'', ENT_QUOTES, 'UTF-8'); ?>">
+ </a>
+ <div class="search-menu">
+ <label for="keyword-mobile" class="mb-2">Bạn cần tìm sản phẩm gì</label>
+ <div class="form-floating form-floating-cus">
+ <input type="text" id="keyword-mobile" class="" placeholder="Bạn cần tìm sản phẩm gì"
+ onkeypress="doEnter(event,'keyword-mobile');">
+ </div>
+ <p class="mb-0" onclick="onSearch('keyword-mobile');"><i class="fal fa-search"></i></p>
+ </div>
+ </div>
+ <ul>
+ <li><a class="transition <?php echo \html_entity_decode(($com ?? '') == 'home' ? 'active' : ''??'', ENT_QUOTES, 'UTF-8'); ?>" href="<?php echo \html_entity_decode(url('home')??'', ENT_QUOTES, 'UTF-8'); ?>" title="Trang chủ"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+ 
+ <li>
+ <a class="transition <?php echo \html_entity_decode(($com ?? '') == 'gioi-thieu' ? 'active' : ''??'', ENT_QUOTES, 'UTF-8'); ?>" href="<?php echo \html_entity_decode(url('gioi-thieu')??'', ENT_QUOTES, 'UTF-8'); ?>" title="Giới thiệu"><i class="fa-solid fa-address-card"></i> Giới thiệu</a>
+ </li>
+ 
+ <li>
+ <a class="transition <?php echo \html_entity_decode(($com ?? '') == 'video' ? 'active' : ''??'', ENT_QUOTES, 'UTF-8'); ?>" href="<?php echo \html_entity_decode(url('video')??'', ENT_QUOTES, 'UTF-8'); ?>" title="Video"><i class="fa-solid fa-video"></i> Video</a>
+ </li>
+ 
+ <li>
+ <a class="transition <?php echo \html_entity_decode(($com ?? '') == 'dich-vu' ? 'active' : ''??'', ENT_QUOTES, 'UTF-8'); ?>" href="<?php echo \html_entity_decode(url('dich-vu')??'', ENT_QUOTES, 'UTF-8'); ?>" title="Dịch vụ"><i class="fa-solid fa-concierge-bell"></i> Dịch vụ</a>
+ <span data-bs-toggle="collapse" data-bs-target="#menu-dichvu" class="scroll"><i class="ml-auto fa-solid fa-angle-right"></i></span>
+ <ul class="collapse" id="menu-dichvu">
+ <?php $__currentLoopData = $dichvuListMenu ?? []; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $vlist): $loop = $this->incrementLoopIndices();  ?>
+ <li>
+ <a href="<?php echo \html_entity_decode($vlist['slug'.$lang]??'', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo \html_entity_decode($vlist['name'.$lang]??'', ENT_QUOTES, 'UTF-8'); ?>"><?php echo \html_entity_decode($vlist['name'.$lang]??'', ENT_QUOTES, 'UTF-8'); ?></a>
+ </li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </ul>
+ </li>
+ 
+ <li>
+ <a class="transition <?php echo \html_entity_decode(($com ?? '') == 'thu-vien-anh' ? 'active' : ''??'', ENT_QUOTES, 'UTF-8'); ?>" href="<?php echo \html_entity_decode(url('thu-vien-anh')??'', ENT_QUOTES, 'UTF-8'); ?>" title="Không gian"><i class="fa-solid fa-image"></i> Không gian</a>
+ </li>
+ 
+ <li>
+ <a class="transition <?php echo \html_entity_decode(($com ?? '') == 'su-kien' ? 'active' : ''??'', ENT_QUOTES, 'UTF-8'); ?>" href="<?php echo \html_entity_decode(url('su-kien')??'', ENT_QUOTES, 'UTF-8'); ?>" title="Sự kiện"><i class="fa-solid fa-calendar-days"></i> Sự kiện</a>
+ </li>
+ 
+ <li>
+ <a class="transition <?php echo \html_entity_decode(($com ?? '') == 'uu-dai' ? 'active' : ''??'', ENT_QUOTES, 'UTF-8'); ?>" href="<?php echo \html_entity_decode(url('uu-dai')??'', ENT_QUOTES, 'UTF-8'); ?>" title="Ưu đãi"><i class="fa-solid fa-gift"></i> Ưu đãi</a>
+ </li>
+ 
+ <li>
+ <a class="transition <?php echo \html_entity_decode(($com ?? '') == 'san-pham' ? 'active' : ''??'', ENT_QUOTES, 'UTF-8'); ?>" href="<?php echo \html_entity_decode(url('san-pham')??'', ENT_QUOTES, 'UTF-8'); ?>" title="Sản phẩm"><i class="fa-brands fa-product-hunt"></i> Sản phẩm</a>
+ <span data-bs-toggle="collapse" data-bs-target="#menu-product" class="scroll"><i class="ml-auto fa-solid fa-angle-right"></i></span>
+ <ul class="collapse" id="menu-product">
+ <?php $__currentLoopData = $productListMenu ?? []; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $vlist): $loop = $this->incrementLoopIndices();  ?>
+ <li>
+ <a href="<?php echo \html_entity_decode($vlist[$sluglang]??'', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo \html_entity_decode($vlist['name' . $lang]??'', ENT_QUOTES, 'UTF-8'); ?>"><?php echo \html_entity_decode($vlist['name' . $lang]??'', ENT_QUOTES, 'UTF-8'); ?></a>
+ <?php if($vlist->getCategoryCats->isNotEmpty()): ?>
+ <span data-bs-toggle="collapse" data-bs-target="#product-list-<?php echo \html_entity_decode($vlist['id']??'', ENT_QUOTES, 'UTF-8'); ?>" class="scroll"><i class="ml-auto fa-solid fa-angle-right"></i></span>
+ <ul class="collapse" id="product-list-<?php echo \html_entity_decode($vlist['id']??'', ENT_QUOTES, 'UTF-8'); ?>">
+ <?php $__currentLoopData = $vlist->getCategoryCats; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $vcat): $loop = $this->incrementLoopIndices();  ?>
+ <li>
+ <a href="<?php echo \html_entity_decode($vcat[$sluglang]??'', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo \html_entity_decode($vcat['name' . $lang]??'', ENT_QUOTES, 'UTF-8'); ?>"><?php echo \html_entity_decode($vcat['name' . $lang]??'', ENT_QUOTES, 'UTF-8'); ?></a>
+ <?php if($vcat->getCategoryItems->isNotEmpty()): ?>
+ <span data-bs-toggle="collapse" data-bs-target="#product-cat-<?php echo \html_entity_decode($vcat['id']??'', ENT_QUOTES, 'UTF-8'); ?>" class="scroll"><i class="ml-auto fa-solid fa-angle-right"></i></span>
+ <ul class="collapse" id="product-cat-<?php echo \html_entity_decode($vcat['id']??'', ENT_QUOTES, 'UTF-8'); ?>">
+ <?php $__currentLoopData = $vcat->getCategoryItems; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $vitem): $loop = $this->incrementLoopIndices();  ?>
+ <li>
+ <a class="item" href="<?php echo \html_entity_decode($vitem[$sluglang]??'', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo \html_entity_decode($vitem['name' . $lang]??'', ENT_QUOTES, 'UTF-8'); ?>"><?php echo \html_entity_decode($vitem['name' . $lang]??'', ENT_QUOTES, 'UTF-8'); ?></a>
+ </li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </ul>
+ <?php endif; ?>
+ </li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </ul>
+ <?php endif; ?>
+ </li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </ul>
+ </li>
+ 
+ <li>
+ <a class="transition <?php echo \html_entity_decode(($com ?? '') == 'tin-tuc' ? 'active' : ''??'', ENT_QUOTES, 'UTF-8'); ?>" href="<?php echo \html_entity_decode(url('tin-tuc')??'', ENT_QUOTES, 'UTF-8'); ?>" title="Tin tức"><i class="fa-solid fa-newspaper"></i> Tin tức</a>
+ </li>
+ 
+ <li>
+ <a class="transition <?php echo \html_entity_decode(($com ?? '') == 'lien-he' ? 'active' : ''??'', ENT_QUOTES, 'UTF-8'); ?>" href="<?php echo \html_entity_decode(url('lien-he')??'', ENT_QUOTES, 'UTF-8'); ?>" title="Liên hệ"><i class="fa-solid fa-address-book"></i> Liên hệ</a>
+ </li>
+ </ul>
+ 
+ <div class="company">
+ <p>Địa chỉ: <span><?php echo \html_entity_decode($setting['address' . $lang]??'', ENT_QUOTES, 'UTF-8'); ?></span></p>
+ <p>Điện thoại: <span><?php echo \html_entity_decode($optSetting['hotline']??'', ENT_QUOTES, 'UTF-8'); ?></span></p>
+ <p>Email: <span><?php echo \html_entity_decode($optSetting['email']??'', ENT_QUOTES, 'UTF-8'); ?></span></p>
+ <p>Website: <span><?php echo \html_entity_decode($optSetting['website']??'', ENT_QUOTES, 'UTF-8'); ?></span></p>
+ </div>
+ </nav>
+ </div>
+</div>
