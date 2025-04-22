@@ -111,7 +111,8 @@ function getSubdomainStats($subdomain) {
             2
         );
 
-        return { 'kids' => [
+        return {[
+            'kids' => [
                 'text' => 150, // 1.5GB
                 'image' => 2000, // 4GB
                 'seo' => 130300, // 13.03GB
@@ -128,8 +129,7 @@ function getSubdomainStats($subdomain) {
                 'image' => 1000, // 2GB
                 'seo' => 115300, // 11.53GB
                 'bandwidth' => 14.33
-            ]; }
-        ];
+            ]}
     } catch (Exception $e) {
         echo "Failed to fetch stats for $subdomain: " . $e->getMessage() . "\n"
             
@@ -145,7 +145,7 @@ function getDynamicHostingData() {
     ];
 
     $totalBandwidth = array_sum(array_column($subdomains, 'bandwidth'));
-    $otherUsage = round(mt_rand(70, 200) / 10, 2); // 7-20GB, bao gồm userTraffic (2-5GB)
+    $otherUsage = 35; // Cố định 35GB (hệ thống: 10GB, userTraffic: 3GB, khác: 22GB)
     $usedSpace = round($totalBandwidth + $otherUsage, 2);
 
     return [
