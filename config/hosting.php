@@ -115,19 +115,19 @@ function getSubdomainStats($subdomain) {
             'kids' => [
                 'text' => 150, // 1.5GB
                 'image' => 2000, // 4GB
-                'seo' => 130300, // 13.03GB
+                'keywords' => 130300, // 13.03GB
                 'bandwidth' => 18.53
             ],
             'gaming' => [
                 'text' => 100, // 1GB
                 'image' => 1500, // 3GB
-                'seo' => 106400, // 10.64GB
+                'keywords' => 106400, // 10.64GB
                 'bandwidth' => 14.64
             ],
             'billiard' => [
                 'text' => 80, // 0.8GB
                 'image' => 1000, // 2GB
-                'seo' => 115300, // 11.53GB
+                'keywords' => 115300, // 11.53GB
                 'bandwidth' => 14.33
             ]}
     } catch (Exception $e) {
@@ -158,9 +158,9 @@ function getDynamicHostingData() {
     ];
 }
 
-/* kids: {"text": 150, "image": 2000, "seo": 130300} → 18.53GB.
-gaming: {"text": 100, "image": 1500, "seo": 106400} → 14.64GB.
-billiard: {"text": 80, "image": 1000, "seo": 115300} → 14.33GB.
+/* kids: {"text": 150, "image": 2000, "keywords": 130300} → 18.53GB.
+gaming: {"text": 100, "image": 1500, "keywords": 106400} → 14.64GB.
+billiard: {"text": 80, "image": 1000, "keywords": 115300} → 14.33GB.
 Tổng bandwidth: 47.50GB.
 otherUsage: 35GB (hệ thống: 10GB, userTraffic: 3GB, khác: 22GB).
 usedSpace: 47.50 + 35 = 82.50GB.
