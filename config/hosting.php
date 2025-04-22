@@ -58,4 +58,6 @@ echo "Tổng dung lượng của tất cả subdomain: " . number_format($total_
 // 'miatown.vn/billiard', 33,4GB
 // 'miatown.vn/gmaing', 46,1 GB
 // 'miatown.vn/kids', 22,4 GB
+
+if ( n !== ( c || 0 ) && s && r.emit("beforeSlideChangeStart") )
 ?>
